@@ -1,6 +1,7 @@
-<p align="center">
+<p align="left">
   <img src="docs/images/logo_petshop.png" alt="Logo" width="300" height="200">
 </p>
+
 
 # Pet Shop Virtual
 
