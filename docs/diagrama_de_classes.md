@@ -18,3 +18,4 @@
 ## Referências
 
 1. Documentação de diagramas UML, Diagrama de Classes. Disponível em: [uml-diagrams.org](https://www.uml-diagrams.org/class-diagrams-overview.html). Acesso em: 14/07/2024.
+   
