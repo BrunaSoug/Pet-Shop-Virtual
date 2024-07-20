@@ -1,0 +1,33 @@
+# Restrições de Negócio
+
+---
+## Restrições e Regras de Negócio
+- Atributos em geral:
+    - Aceita valor nulo?
+      - _Apenas telefone (Pessoa) pode ser nulo_
+    - Terá permissão para uma alteração futura?
+      - _Apenas cpf (Pessoa) não poderá ser alterada_
+    - O que deverá ser único?
+      - _Apenas cpf (Pessoa), cargo (Funcionario), id (Usuario, Pedido, ItemPedido, Produto)_
+- Atributos do tipo numérico:
+  - Valores permitidos
+    - _id (Usuario, Pedido, ItemPedido, Produto) = 0 até 2147483647_
+    - _salario (Funcionario) = 1000 até 20000_
+    - _permissao (Usuario)_ = 1 até 15_
+    - _valorTotal (Pedido) = 1 até 999999_
+    - _quantidade (ItemPedido) = 1 até 99_
+    - _quantidadeEstoque (Produto) = 0 até 9999_
+    - _preco (Produto) = 1 até 99999_
+- Atributos do tipo texto:
+  - Quantidade mínima e máxima de caracteres
+    - _login (Usuario) = Mínima: 3; Máxima: 30_
+    - _senha (Usuario) = Mínima: 6; Máxima: 30_
+    - _cpf (Pessoa) = Mínima: 11; Máxima: 14_
+    - _nome (Pessoa) = Mínima: 3; Máxima: 60_
+    - _email (Pessoa) = Mínima: 10; Máxima: 60_
+    - _telefone (Pessoa) = Mínima: 9; Máxima: 16_
+    - _endereco (Pessoa) = Mínima: 10; Máxima: 100_
+    - _cargo (Funcionario) = Mínima: 5; Máxima: 30_
+    - _nomeProduto (Produto) = Mínima: 1; Máxima: 60_
+    - _categoriaProduto (Produto) = Mínima: 1; Máxima: 20_
+    - _formaPagamento (Pedido) = Mínima: 3; Máxima: 20_
