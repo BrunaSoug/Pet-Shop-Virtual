@@ -1,13 +1,13 @@
-package br.edu.iff.ccc.bsi.webdev;
+package br.edu.iff.ccc.bsi.petshopvirtual;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebDev4Application {
+public class PetShopVirtualApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebDev4Application.class, args);
+		SpringApplication.run(PetShopVirtualApplication.class, args);
 	}
 
 }
