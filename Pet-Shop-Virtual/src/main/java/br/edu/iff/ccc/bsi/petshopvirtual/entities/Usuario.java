@@ -1,7 +1,7 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "usuarios")
@@ -15,15 +15,14 @@ public class Usuario extends Pessoa {
     @Size(min = 6, max = 30, message = "A senha deve ter entre 6 e 30 caracteres")
     private String senha;
 
-    @Column(nullable = false)
-    @Min(value = 1, message = "Permissão deve ser no mínimo 1")
-    @Max(value = 15, message = "Permissão deve ser no máximo 15")
-    private int permissao;
+    @ManyToOne
+    @JoinColumn(name = "permissao_id", nullable = false)
+    private Permissao permissao;
 
     public Usuario() {
     }
 
-    public Usuario(String cpf, String nome, String email, String telefone, String endereco, String login, String senha, int permissao) {
+    public Usuario(String cpf, String nome, String email, String telefone, String endereco, String login, String senha, Permissao permissao) {
         super(cpf, nome, email, telefone, endereco);
         this.login = login;
         this.senha = senha;
@@ -46,11 +45,11 @@ public class Usuario extends Pessoa {
         this.senha = senha;
     }
 
-    public int getPermissao() {
+    public Permissao getPermissao() {
         return permissao;
     }
 
-    public void setPermissao(int permissao) {
+    public void setPermissao(Permissao permissao) {
         this.permissao = permissao;
     }
 }

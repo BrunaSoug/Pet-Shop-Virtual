@@ -1,7 +1,10 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "funcionarios")
@@ -16,13 +19,22 @@ public class Funcionario extends Pessoa {
     @Size(min = 5, max = 30, message = "O cargo deve ter entre 5 e 30 caracteres")
     private String cargo;
 
+    @ManyToOne
+    @JoinColumn(name = "departamento_id", nullable = false)
+    private Departamento departamento;
+
+    @Column(nullable = false)
+    private LocalDate dataContratacao;
+    
     public Funcionario() {
     }
 
-    public Funcionario(String cpf, String nome, String email, String telefone, String endereco, double salario, String cargo) {
+    public Funcionario(String cpf, String nome, String email, String telefone, String endereco, double salario, String cargo, Departamento departamento, LocalDate dataContratacao) {
         super(cpf, nome, email, telefone, endereco);
         this.salario = salario;
         this.cargo = cargo;
+        this.departamento = departamento;
+        this.dataContratacao = dataContratacao;
     }
 
     public double getSalario() {
@@ -40,6 +52,23 @@ public class Funcionario extends Pessoa {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
+
+    public LocalDate getDataContratacao() {
+        return dataContratacao;
+    }
+
+    public void setDataContratacao(LocalDate dataContratacao) {
+        this.dataContratacao = dataContratacao;
+    }
+
     @Override
     public String toString() {
         return "Funcionario{" +
@@ -51,6 +80,8 @@ public class Funcionario extends Pessoa {
                 ", endereco='" + getEndereco() + '\'' +
                 ", salario=" + salario +
                 ", cargo='" + cargo + '\'' +
+                ", departamento='" + (departamento != null ? departamento.getNome() : "N/A") + '\'' +
+                ", dataContratacao=" + dataContratacao +
                 '}';
     }
 

@@ -1,5 +1,6 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.entities;
 
+import java.time.LocalDate;
 import java.util.List;
 import jakarta.persistence.*;
 
@@ -7,13 +8,26 @@ import jakarta.persistence.*;
 @Table(name = "clientes")
 public class Cliente extends Pessoa {
 
+    @Column(name = "data_nascimento")
+    private LocalDate dataNascimento;
+
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pedido> pedidos;
-
+   
     public Cliente() {
     }
-    public Cliente(String cpf, String nome, String email, String telefone, String endereco) {
+
+    public Cliente(String cpf, String nome, String email, String telefone, String endereco, LocalDate dataNascimento) {
         super(cpf, nome, email, telefone, endereco);
+        this.dataNascimento = dataNascimento;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public List<Pedido> getPedidos() {
@@ -33,6 +47,7 @@ public class Cliente extends Pessoa {
                 ", email='" + getEmail() + '\'' +
                 ", telefone='" + getTelefone() + '\'' +
                 ", endereco='" + getEndereco() + '\'' +
+                ", dataNascimento=" + dataNascimento +
                 '}';
     }
 

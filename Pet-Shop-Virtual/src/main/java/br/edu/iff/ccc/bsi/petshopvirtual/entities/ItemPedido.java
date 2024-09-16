@@ -11,6 +11,7 @@ public class ItemPedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(nullable = false)
     @Min(value = 1, message = "A quantidade deve ser no mínimo 1")
     @Max(value = 99, message = "A quantidade deve ser no máximo 99")
