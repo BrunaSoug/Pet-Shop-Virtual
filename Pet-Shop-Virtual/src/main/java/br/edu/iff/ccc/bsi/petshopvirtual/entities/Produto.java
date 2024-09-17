@@ -1,7 +1,12 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.DecimalMax;
+
 
 @Entity
 @Table(name = "produtos")

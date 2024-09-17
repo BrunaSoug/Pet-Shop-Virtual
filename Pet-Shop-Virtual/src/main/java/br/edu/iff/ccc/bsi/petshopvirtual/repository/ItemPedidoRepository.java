@@ -11,6 +11,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ItemPedidoRepository extends JpaRepository<ItemPedido, Long> {
-    @Query("SELECT ip FROM ItemPedido ip WHERE ip.pedido.numeroPedido = :numeroPedido")
-    List<ItemPedido> findByPedidoNumeroPedido(@Param("numeroPedido") String numeroPedido);
+
 }
