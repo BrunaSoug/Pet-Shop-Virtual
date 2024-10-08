@@ -9,28 +9,24 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PermissaoService implements PermissaoServiceInterface {
+public class PermissaoService {
 
     @Autowired
     private PermissaoRepository permissaoRepository;
 
-    @Override
-    public Permissao save(Permissao permissao) {
+    public Permissao salvar(Permissao permissao) {
         return permissaoRepository.save(permissao);
     }
 
-    @Override
-    public Optional<Permissao> findById(Long id) {
+    public Optional<Permissao> buscarPorId(Long id) {
         return permissaoRepository.findById(id);
     }
 
-    @Override
-    public List<Permissao> findAll() {
+    public List<Permissao> listarTodas() {
         return permissaoRepository.findAll();
     }
 
-    @Override
-    public void deleteById(Long id) {
+    public void deletarPorId(Long id) {
         permissaoRepository.deleteById(id);
     }
 }

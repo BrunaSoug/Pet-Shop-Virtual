@@ -2,30 +2,36 @@ package br.edu.iff.ccc.bsi.petshopvirtual.service;
 
 import br.edu.iff.ccc.bsi.petshopvirtual.entities.Produto;
 import br.edu.iff.ccc.bsi.petshopvirtual.repository.ProdutoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
 @Service
-public class ProdutoService implements ProdutoServiceInterface {
+public class ProdutoService {
 
+    @Autowired
     private ProdutoRepository repoproduto;
-    public ProdutoService(ProdutoRepository produtoRepository) {
-        this.repoproduto = produtoRepository;
-    }
-
-    @Override
     public Produto salvarProduto(Produto produto) {
         try {
-            Produto savedProduto = repoproduto.save(produto);
-            System.out.println("Produto salvo com sucesso: " + savedProduto);
-            return savedProduto;
+            Produto produtoSalvo = repoproduto.save(produto);
+            System.out.println("Produto salvo com sucesso: " + produtoSalvo);
+            return produtoSalvo;
         } catch (Exception e) {
-            System.err.println("Erro ao salvar Produto: " + e.getMessage());
+            System.err.println("Erro ao salvar o produto: " + e.getMessage());
             return null;
         }
     }
 
-    @Override
+    public Produto atualizarProduto(Long id, Produto produtoAtualizado) {
+        if (!repoproduto.existsById(id)) {
+            System.err.println("Produto com ID " + id + " não encontrado.");
+            return null; 
+        }
+        produtoAtualizado.setId(id); 
+        return salvarProduto(produtoAtualizado);
+    }
     public void deletarProduto(Long id) {
         try {
             if (repoproduto.existsById(id)) {
@@ -35,11 +41,9 @@ public class ProdutoService implements ProdutoServiceInterface {
                 System.err.println("Produto com ID " + id + " não encontrado.");
             }
         } catch (Exception e) {
-            System.err.println("Erro ao deletar Produto: " + e.getMessage());
+            System.err.println("Erro ao deletar o produto: " + e.getMessage());
         }
     }
-
-    @Override
     public Optional<Produto> obterProdutoPorId(Long id) {
         try {
             Optional<Produto> produto = repoproduto.findById(id);
@@ -50,8 +54,21 @@ public class ProdutoService implements ProdutoServiceInterface {
             }
             return produto;
         } catch (Exception e) {
-            System.err.println("Erro ao obter Produto por ID: " + e.getMessage());
+            System.err.println("Erro ao obter o produto por ID: " + e.getMessage());
             return Optional.empty();
         }
+    }
+    public List<Produto> obterTodosProdutos() {
+        try {
+            List<Produto> produtos = repoproduto.findAll();
+            System.out.println("Produtos encontrados: " + produtos);
+            return produtos;
+        } catch (Exception e) {
+            System.err.println("Erro ao obter todos os produtos: " + e.getMessage());
+            return List.of(); 
+        }
+    }
+    public boolean existeProdutoPorId(Long id) {
+        return repoproduto.existsById(id);
     }
 }
