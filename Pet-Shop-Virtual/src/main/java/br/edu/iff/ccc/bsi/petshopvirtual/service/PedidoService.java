@@ -51,7 +51,7 @@ public class PedidoService {
         Optional<Pedido> pedidoOptional = pedidoRepository.findById(id);
         if (pedidoOptional.isPresent()) {
             Pedido pedido = pedidoOptional.get();
-            pedido.setData(pedidoAtualizado.getData());
+            pedido.setDataPedido(pedidoAtualizado.getDataPedido());
             pedido.setCliente(pedidoAtualizado.getCliente());
             return pedidoRepository.save(pedido);
         } else {

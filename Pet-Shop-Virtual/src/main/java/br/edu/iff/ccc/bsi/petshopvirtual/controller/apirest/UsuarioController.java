@@ -1,18 +1,16 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.controller.apirest;
-
 import br.edu.iff.ccc.bsi.petshopvirtual.entities.Usuario;
-import br.edu.iff.ccc.bsi.petshopvirtual.repositories.UsuarioRepository;
-import br.edu.iff.ccc.bsi.petshopvirtual.exceptions.UsuarioNotFoundException;
+import br.edu.iff.ccc.bsi.petshopvirtual.exception.UsuarioNotFoundException;
+import br.edu.iff.ccc.bsi.petshopvirtual.repository.UsuarioRepository;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.parameters.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

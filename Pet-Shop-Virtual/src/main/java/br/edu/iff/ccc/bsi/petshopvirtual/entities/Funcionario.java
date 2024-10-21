@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "funcionarios")
 public class Funcionario extends Pessoa {
 
     @Column(nullable = false)

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Funcionários</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2D2D73;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            position: relative;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 36px;
+            color: #FDD835;
+        }
+
+        .header-image {
+            display: block;
+            margin: 20px auto;
+            width: 400px; 
+            max-width: 100%;
+            height: auto;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            color: #2D2D73;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        thead tr {
+            background-color: #FDD835;
+            color: #2D2D73;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #FFC107;
+        }
+
+        td a {
+            color: #2D2D73;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        a.btn-novo-cliente {
+            padding: 10px 20px;
+            background-color: #FDD835;
+            color: #2D2D73;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        a.btn-novo-cliente:hover {
+            background-color: #FFC107;
+        }
+
+        body::before, body::after {
+            position: absolute;
+            font-size: 30px;
+            color: #FDD835;
+        }
+
+        body::before {
+            top: 10%;
+            left: 5%;
+            transform: rotate(10deg);
+        }
+
+        body::after {
+            bottom: 10%;
+            right: 5%;
+            transform: rotate(-10deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>Funcionários</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Salário</th>
+            <th>Cargo</th>
+            <th>Departamento</th>
+            <th>Ações</th>
+        </tr>
+        <tr th:each="funcionario : ${funcionarios}">
+            <td th:text="${funcionario.id}"></td>
+            <td th:text="${funcionario.nome}"></td>
+            <td th:text="${funcionario.salario}"></td>
+            <td th:text="${funcionario.cargo}"></td>
+            <td th:text="${funcionario.departamento.nome}"></td>
+            <td>
+                <a th:href="@{/funcionarios/view/edit/{id}(id=${funcionario.id})}">Editar</a>
+                <a th:href="@{/funcionarios/view/delete/{id}(id=${funcionario.id})}">Deletar</a>
+                <a href="/funcionarios/view/new" class="btn-novo-cliente">Novo Funcionario</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

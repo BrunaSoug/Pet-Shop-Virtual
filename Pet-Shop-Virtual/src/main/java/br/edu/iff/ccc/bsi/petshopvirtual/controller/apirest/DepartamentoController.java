@@ -1,20 +1,19 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.controller.apirest;
 import br.edu.iff.ccc.bsi.petshopvirtual.entities.Departamento;
-import br.edu.iff.ccc.bsi.petshopvirtual.repositories.DepartamentoRepository;
-import br.edu.iff.ccc.bsi.petshopvirtual.exceptions.DepartamentoNotFoundException;
+import br.edu.iff.ccc.bsi.petshopvirtual.exception.DepartamentoNotFoundException;
+import br.edu.iff.ccc.bsi.petshopvirtual.repository.DepartamentoRepository;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.parameters.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import java.util.List;
 
 @RestController
@@ -39,7 +38,7 @@ public class DepartamentoController {
                                                   @PathVariable long id) {
         Departamento departamento = departamentoRepository.findById(id)
                 .orElseThrow(() -> new DepartamentoNotFoundException());
-        
+
         Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DepartamentoController.class).findById(id)).withSelfRel();
         Link allLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DepartamentoController.class).findAll()).withRel("departamentos");
         departamento.add(selfLink);
@@ -52,12 +51,12 @@ public class DepartamentoController {
     @GetMapping
     public List<Departamento> findAll() {
         List<Departamento> departamentos = departamentoRepository.findAll();
-        
+
         departamentos.forEach(departamento -> {
             Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DepartamentoController.class).findById(departamento.getId())).withSelfRel();
             departamento.add(selfLink);
         });
-        
+
         return departamentos;
     }
 
@@ -65,7 +64,7 @@ public class DepartamentoController {
     @PostMapping
     public ResponseEntity<Departamento> create(@RequestBody Departamento departamento) {
         Departamento createdDepartamento = departamentoRepository.save(departamento);
-        
+
         Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DepartamentoController.class).findById(createdDepartamento.getId())).withSelfRel();
         createdDepartamento.add(selfLink);
 

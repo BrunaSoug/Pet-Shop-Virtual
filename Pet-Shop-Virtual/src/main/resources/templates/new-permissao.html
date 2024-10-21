@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Nova Permissão</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2D2D73;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 36px;
+            color: #FDD835;
+        }
+        form {
+            width: 50%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #2D2D73;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #FDD835;
+            outline: none;
+        }
+
+        button, a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button {
+            background-color: #FDD835;
+            color: #2D2D73;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FFC107;
+        }
+
+        a {
+            background-color: #2D2D73;
+            color: white;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background-color: #4444AA;
+        }
+        body::before, body::after {
+            content: '🐾 🐾 🐾';
+            position: absolute;
+            font-size: 30px;
+            color: #FDD835;
+        }
+
+        body::before {
+            top: 10%;
+            left: 5%;
+            transform: rotate(10deg);
+        }
+
+        body::after {
+            bottom: 10%;
+            right: 5%;
+            transform: rotate(-10deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>Criar Nova Permissão</h1>
+    <form action="/permissoes/view" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br>
+
+        <label for="nivel">Nível:</label>
+        <input type="number" id="nivel" name="nivel" min="1" required><br>
+
+        <input type="submit" value="Salvar">
+        <a href="/permissoes/view">Cancelar</a>
+    </form>
+</body>
+</html>

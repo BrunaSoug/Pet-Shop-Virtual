@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Pedido</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2D2D73;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 36px;
+            color: #FDD835;
+        }
+        form {
+            width: 50%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #2D2D73;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #FDD835;
+            outline: none;
+        }
+        button, a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button {
+            background-color: #FDD835;
+            color: #2D2D73;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FFC107;
+        }
+
+        a {
+            background-color: #2D2D73;
+            color: white;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background-color: #4444AA;
+        }
+        body::before, body::after {
+            content: '🐾 🐾 🐾';
+            position: absolute;
+            font-size: 30px;
+            color: #FDD835;
+        }
+
+        body::before {
+            top: 10%;
+            left: 5%;
+            transform: rotate(10deg);
+        }
+
+        body::after {
+            bottom: 10%;
+            right: 5%;
+            transform: rotate(-10deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>Editar Pedido</h1>
+    <form action="/pedidos/view/update/{id}" method="post" th:action="@{/pedidos/view/update/{id}(id=${pedido.id})}">
+        <label for="dataPedido">Data do Pedido:</label>
+        <input type="date" id="dataPedido" name="dataPedido" th:value="${pedido.dataPedido}" required><br>
+
+        <label for="valorTotal">Valor Total:</label>
+        <input type="number" id="valorTotal" name="valorTotal" th:value="${pedido.valorTotal}" step="0.01" min="1.00" required><br>
+
+        <label for="formaPagamento">Forma de Pagamento:</label>
+        <input type="text" id="formaPagamento" name="formaPagamento" th:value="${pedido.formaPagamento}" required><br>
+
+        <label for="finalizado">Finalizado:</label>
+        <input type="checkbox" id="finalizado" name="finalizado" th:checked="${pedido.finalizado}"><br>
+
+        <label for="cliente">Cliente:</label>
+        <select id="cliente" name="cliente.id" required>
+            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}" 
+                th:selected="${cliente.id == pedido.cliente.id}"></option>
+        </select><br>
+
+        <input type="submit" value="Atualizar">
+        <a href="/pedidos/view">Cancelar</a>
+    </form>
+</body>
+</html>

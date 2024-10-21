@@ -1,13 +1,12 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.entities;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
-
+import org.springframework.hateoas.RepresentationModel;
 @Entity
 @Table(name = "pedidos")
-public class Pedido {
+public class Pedido extends RepresentationModel<Pedido>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

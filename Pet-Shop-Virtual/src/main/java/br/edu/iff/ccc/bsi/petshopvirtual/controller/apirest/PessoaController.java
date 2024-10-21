@@ -1,22 +1,19 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.controller.apirest;
-
 import br.edu.iff.ccc.bsi.petshopvirtual.entities.Pessoa;
-import br.edu.iff.ccc.bsi.petshopvirtual.repositories.PessoaRepository;
-import br.edu.iff.ccc.bsi.petshopvirtual.exceptions.PessoaNotFoundException;
+import br.edu.iff.ccc.bsi.petshopvirtual.exception.PessoaNotFoundException;
+import br.edu.iff.ccc.bsi.petshopvirtual.repository.PessoaRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.parameters.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import io.swagger.v3.oas.annotations.Parameter;
 import java.util.List;
-
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaController {

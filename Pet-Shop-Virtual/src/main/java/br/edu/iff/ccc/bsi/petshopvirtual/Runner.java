@@ -1,5 +1,4 @@
 package br.edu.iff.ccc.bsi.petshopvirtual;
-
 import br.edu.iff.ccc.bsi.petshopvirtual.repository.ClienteRepository;
 import br.edu.iff.ccc.bsi.petshopvirtual.repository.FuncionarioRepository;
 import br.edu.iff.ccc.bsi.petshopvirtual.repository.ItemPedidoRepository;
@@ -27,10 +26,9 @@ public class Runner implements CommandLineRunner {
         this.produtoRepository = produtoRepository;
         this.itemPedidoRepository = itemPedidoRepository;
     }
-
 	@Override
 	public void run(String... args) throws Exception {
-		 System.out.println("Clientes encontrados:");
+        System.out.println("Clientes encontrados:");
 	        clienteRepository.findAll().forEach(System.out::println);
 
 	        System.out.println("Funcionários encontrados:");
