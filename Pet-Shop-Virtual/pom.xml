@@ -83,15 +83,15 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- Dependência Hateoas -->
-         <dependency>
-            <groupid>org.springframework.boot</groupid>
-            <artifactid>spring-boot-starter-hateoas</artifactid>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.15</version>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.5.0</version>
+            <artifactId>springdoc-openapi-data-rest</artifactId>
+            <version>1.6.15</version>
         </dependency>
     </dependencies>
     

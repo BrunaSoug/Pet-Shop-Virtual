@@ -1,23 +1,20 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.controller.apirest;
-
 import br.edu.iff.ccc.bsi.petshopvirtual.entities.Permissao;
-import br.edu.iff.ccc.bsi.petshopvirtual.repositories.PermissaoRepository;
-import br.edu.iff.ccc.bsi.petshopvirtual.exceptions.PermissaoNotFoundException;
+import br.edu.iff.ccc.bsi.petshopvirtual.exception.PermissaoNotFoundException;
+import br.edu.iff.ccc.bsi.petshopvirtual.repository.PermissaoRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.parameters.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import io.swagger.v3.oas.annotations.Parameter;
 import java.util.List;
-
 @RestController
 @RequestMapping("/permissoes")
 public class PermissaoController {

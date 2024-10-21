@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.hateoas.RepresentationModel;
 
 @Entity
 @Table(name = "departamentos")
-public class Departamento {
+public class Departamento extends RepresentationModel<Departamento> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

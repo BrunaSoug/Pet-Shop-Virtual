@@ -1,11 +1,9 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.entities;
-
 import java.time.LocalDate;
 import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "clientes")
 public class Cliente extends Pessoa {
 
     @Column(name = "data_nascimento")

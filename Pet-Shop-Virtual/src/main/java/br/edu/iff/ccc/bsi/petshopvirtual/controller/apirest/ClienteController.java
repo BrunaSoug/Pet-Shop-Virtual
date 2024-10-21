@@ -1,14 +1,12 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.controller.apirest;
-
 import br.edu.iff.ccc.bsi.petshopvirtual.entities.Cliente;
-import br.edu.iff.ccc.bsi.petshopvirtual.repositories.ClienteRepository;
-import br.edu.iff.ccc.bsi.petshopvirtual.exceptions.ClienteNotFoundException;
+import br.edu.iff.ccc.bsi.petshopvirtual.repository.ClienteRepository;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.parameters.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -31,10 +29,10 @@ public class ClienteController {
             content = @Content)
     })
     @GetMapping
-    public List<Cliente> findAll() {
+    public List<Cliente> findAll() throws Exception {
         List<Cliente> clientes = clienteRepository.findAll();
         if (clientes.isEmpty()) {
-            throw new ClienteNotFoundException(); 
+            throw new Exception(); 
         }
         return clientes;
     }
@@ -53,7 +51,7 @@ public class ClienteController {
     public Cliente findById(@Parameter(description = "ID do cliente a ser buscado") 
                             @PathVariable long id) {
         return clienteRepository.findById(id)
-                .orElseThrow(() -> new ClienteNotFoundException());
+                .orElseThrow(null);
     }
 
     @Operation(summary = "Criar um novo cliente")
@@ -81,7 +79,7 @@ public class ClienteController {
     @PutMapping("/{id}")
     public Cliente update(@PathVariable Long id, @RequestBody Cliente cliente) {
         Cliente existingCliente = clienteRepository.findById(id)
-                .orElseThrow(() -> new ClienteNotFoundException());
+                .orElseThrow(null);
 
         existingCliente.setNome(cliente.getNome());
         existingCliente.setEmail(cliente.getEmail());
@@ -102,7 +100,7 @@ public class ClienteController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         Cliente existingCliente = clienteRepository.findById(id)
-                .orElseThrow(() -> new ClienteNotFoundException());
+                .orElseThrow(null);
         clienteRepository.delete(existingCliente);
     }
 }

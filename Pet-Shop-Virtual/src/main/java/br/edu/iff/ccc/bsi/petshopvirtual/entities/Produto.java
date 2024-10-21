@@ -1,5 +1,5 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.entities;
-
+import org.springframework.hateoas.RepresentationModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Min;
@@ -7,15 +7,13 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.DecimalMax;
 
-
 @Entity
 @Table(name = "produtos")
-public class Produto {
+public class Produto extends RepresentationModel<Produto> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(unique = true, nullable = false, length = 60)
     @Size(min = 1, max = 60, message = "O nome do produto deve ter entre 1 e 60 caracteres")
     private String nomeProduto;

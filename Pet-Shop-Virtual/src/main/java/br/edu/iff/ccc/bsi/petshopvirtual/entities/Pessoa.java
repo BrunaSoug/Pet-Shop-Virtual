@@ -1,13 +1,14 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.entities;
 
+import org.springframework.hateoas.RepresentationModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Email;
 
-
-@MappedSuperclass
-public abstract class Pessoa {
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class Pessoa extends RepresentationModel<Pessoa> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +32,6 @@ public abstract class Pessoa {
     @Size(min = 10, max = 100)
     private String endereco;
 
-    
     public Pessoa() {
     }
 
@@ -43,7 +43,6 @@ public abstract class Pessoa {
         this.endereco = endereco;
     }
 
-   
     public Long getId() {
         return id;
     }

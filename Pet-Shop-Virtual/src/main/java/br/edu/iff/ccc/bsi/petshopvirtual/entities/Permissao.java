@@ -1,10 +1,10 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.entities;
-
+import org.springframework.hateoas.RepresentationModel;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "permissoes")
-public class Permissao {
+public class Permissao extends RepresentationModel<Permissao> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

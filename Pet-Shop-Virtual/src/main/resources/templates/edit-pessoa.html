@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Pessoa</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2D2D73;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 36px;
+            color: #FDD835;
+        }
+        form {
+            width: 50%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #2D2D73;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #FDD835;
+            outline: none;
+        }
+        button, a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button {
+            background-color: #FDD835;
+            color: #2D2D73;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FFC107;
+        }
+
+        a {
+            background-color: #2D2D73;
+            color: white;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            background-color: #4444AA;
+        }
+        body::before, body::after {
+            content: '🐾 🐾 🐾';
+            position: absolute;
+            font-size: 30px;
+            color: #FDD835;
+        }
+
+        body::before {
+            top: 10%;
+            left: 5%;
+            transform: rotate(10deg);
+        }
+
+        body::after {
+            bottom: 10%;
+            right: 5%;
+            transform: rotate(-10deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>Editar Pessoa</h1>
+    <form action="#" th:action="@{/pessoas/view/update/{id}(id=${pessoa.id})}" th:object="${pessoa}" method="post">
+        <div>
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" th:field="*{cpf}" required />
+            <span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}">CPF inválido</span>
+        </div>
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" th:field="*{nome}" required />
+            <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome inválido</span>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" required />
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email inválido</span>
+        </div>
+        <div>
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" th:field="*{telefone}" />
+        </div>
+        <div>
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" th:field="*{endereco}" />
+        </div>
+        <div>
+            <button type="submit">Atualizar</button>
+            <a href="/pessoas/view">Cancelar</a>
+        </div>
+    </form>
+</body>
+</html>

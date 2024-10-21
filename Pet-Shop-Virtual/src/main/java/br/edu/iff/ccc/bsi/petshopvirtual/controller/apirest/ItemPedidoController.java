@@ -1,20 +1,19 @@
 package br.edu.iff.ccc.bsi.petshopvirtual.controller.apirest;
-
 import br.edu.iff.ccc.bsi.petshopvirtual.entities.ItemPedido;
-import br.edu.iff.ccc.bsi.petshopvirtual.repositories.ItemPedidoRepository;
-import br.edu.iff.ccc.bsi.petshopvirtual.exceptions.ItemPedidoNotFoundException;
+import br.edu.iff.ccc.bsi.petshopvirtual.exception.ItemPedidoNotFoundException;
+import br.edu.iff.ccc.bsi.petshopvirtual.repository.ItemPedidoRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.parameters.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Parameter;
 
 import java.util.List;
 
@@ -36,10 +35,11 @@ public class ItemPedidoController {
             content = @Content)
     })
     @GetMapping("/{id}")
-    public ResponseEntity<ItemPedido> findById(@Parameter(description = "ID do item de pedido a ser buscado") 
-                                                @PathVariable long id) {
+    public ResponseEntity<ItemPedido> findById(
+            @Parameter(description = "ID do item de pedido a ser buscado") 
+            @PathVariable long id) {
         ItemPedido itemPedido = itemPedidoRepository.findById(id)
-                .orElseThrow(() -> new ItemPedidoNotFoundException());
+                .orElseThrow(() -> new ItemPedidoNotFoundException("Item de pedido com ID " + id + " não encontrado"));
         
         Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ItemPedidoController.class).findById(id)).withSelfRel();
         itemPedido.add(selfLink);
@@ -73,9 +73,12 @@ public class ItemPedidoController {
 
     @Operation(summary = "Atualizar um item de pedido")
     @PutMapping("/{id}")
-    public ResponseEntity<ItemPedido> update(@PathVariable long id, @RequestBody ItemPedido itemPedidoDetails) {
+    public ResponseEntity<ItemPedido> update(
+            @PathVariable long id, 
+            @RequestBody ItemPedido itemPedidoDetails) {
+        
         ItemPedido itemPedido = itemPedidoRepository.findById(id)
-                .orElseThrow(() -> new ItemPedidoNotFoundException());
+                .orElseThrow(() -> new ItemPedidoNotFoundException("Item de pedido com ID " + id + " não encontrado"));
 
         itemPedido.setQuantidade(itemPedidoDetails.getQuantidade());
         itemPedido.setProduto(itemPedidoDetails.getProduto());
@@ -93,7 +96,7 @@ public class ItemPedidoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         ItemPedido itemPedido = itemPedidoRepository.findById(id)
-                .orElseThrow(() -> new ItemPedidoNotFoundException());
+                .orElseThrow(() -> new ItemPedidoNotFoundException("Item de pedido com ID " + id + " não encontrado"));
 
         itemPedidoRepository.delete(itemPedido);
         return ResponseEntity.noContent().build();
