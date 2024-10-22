@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Excluir Cliente</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Excluir Cliente</h1>
+        <p>Tem certeza que deseja excluir o cliente <strong th:text="${cliente.nome}"></strong>?</p>
+
+        <form th:action="@{/clientes/excluir/{id}(id=${cliente.id})}" method="post">
+            <button type="submit" class="btn btn-danger">Excluir</button>
+            <a href="/clientes" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

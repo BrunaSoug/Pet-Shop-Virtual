@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Cadastro de Clientes</h1>
+
+        <a href="/clientes/novo" class="btn btn-success mb-3">Adicionar Novo Cliente</a>
+
+        <!-- Lista de Clientes -->
+        <h2>Clientes Cadastrados</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>CPF</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Endereço</th>
+                    <th>Data de Nascimento</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.cpf}"></td>
+                    <td th:text="${cliente.nome}"></td>
+                    <td th:text="${cliente.email}"></td>
+                    <td th:text="${cliente.telefone}"></td>
+                    <td th:text="${cliente.endereco}"></td>
+                    <td th:text="${cliente.dataNascimento}"></td>
+                    <td>
+                        <form th:action="@{/clientes/editar/{id}(id=${cliente.id})}" method="get" class="d-inline">
+                            <button type="submit" class="btn btn-warning btn-sm">Editar</button>
+                        </form>
+                        <form th:action="@{/clientes/excluir/{id}(id=${cliente.id})}" method="get" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
