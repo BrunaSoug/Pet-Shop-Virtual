@@ -9,15 +9,18 @@ Este projeto é uma loja virtual para venda de produtos para animais domésticos
 
 ## Autores
 
-- 👩🏾‍💻[@BrunaSoug](https://github.com/BrunaSoug)
-
-- 👨🏻‍💻[@Messias](https://github.com/messias003)
+- 👩‍💻[@BrunaSoug](https://github.com/BrunaSoug)
+- 👨‍💻Caio Dutra Moretti
+- 🎨Daniel Pereira Godoy
+- 👨‍💻Everton França Pinto da Silva
+- 🎨Jaderson Gonçalves Abreu
+- 🎨Kaylane Motta Martins 
+- 👨‍💻Matheus de Carvalho Braga 
+- 👨‍💻[@Messias](https://github.com/messias003)
+- 🎨Thais Aquino Vaz
 
 ## Instalação / Começando
 
-Certifique-se de ter o Java Development Kit (JDK) instalado. Você pode baixá-lo e instalá-lo a partir do site oficial da Oracle ou de outras fontes confiáveis.
-
-- [JDK Development Kit 22.0.1](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
     
 ## Stack utilizada
 
