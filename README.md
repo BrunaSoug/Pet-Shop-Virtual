@@ -10,14 +10,7 @@ Este projeto é uma loja virtual para venda de produtos para animais domésticos
 ## Autores
 
 - 👩‍💻[@BrunaSoug](https://github.com/BrunaSoug)
-- 👨‍💻Caio Dutra Moretti
-- 🎨Daniel Pereira Godoy
-- 👨‍💻Everton França Pinto da Silva
-- 🎨Jaderson Gonçalves Abreu
-- 🎨Kaylane Motta Martins 
-- 👨‍💻Matheus de Carvalho Braga 
 - 👨‍💻[@Messias](https://github.com/messias003)
-- 🎨Thais Aquino Vaz
 
 ## Instalação / Começando
 
